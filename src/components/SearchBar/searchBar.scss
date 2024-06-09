@@ -1,0 +1,22 @@
+.search-bar-wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	padding: 0px;
+	border-radius: 12px;
+	.search-bar-suffix-wrapper,
+	.search-bar-prefix-wrapper {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: inherit;
+		&.sb-suffix-clickable,
+		&.sb-prefix-clickable {
+			cursor: pointer;
+		}
+	}
+	.sbw-text-field {
+		border-radius: 12px;
+	}
+}

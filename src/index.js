@@ -1,13 +1,27 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import "@fontsource/inter/latin-400.css";
+import "@fontsource/inter/latin-500.css";
+import "@fontsource/inter/latin-600.css";
+import "@fontsource/inter/latin-700.css";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { Provider as ReduxProvider } from "react-redux";
+import { PersistGate as ReduxPersistGate } from "redux-persist/integration/react";
+import App from "./App";
+import store, { persistor } from "./dataLayer/store";
+import "./index.css";
+import reportWebVitals from "./reportWebVitals";
+import ThemeWrapper from "./theme/ThemeWrapper";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <ReduxProvider store={store}>
+      <ReduxPersistGate loading={null} persistor={persistor}>
+        <ThemeWrapper>
+          <App />
+        </ThemeWrapper>
+      </ReduxPersistGate>
+    </ReduxProvider>
   </React.StrictMode>
 );
 

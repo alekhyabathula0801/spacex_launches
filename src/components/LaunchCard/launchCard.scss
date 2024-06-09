@@ -1,0 +1,20 @@
+.sxl-launch-card {
+  padding: 16px;
+  box-shadow: 0px 8px 25px 0px #0000001a;
+  min-width: 240px;
+  border-radius: 12px;
+
+  .sxl-lc-logo {
+    height: 120px;
+    margin-bottom: 8px;
+  }
+
+  .sxl-lc-display-item {
+    padding-bottom: 8px;
+
+    .sxl-lc-di-left {
+      min-width: 60px;
+      text-align: left;
+    }
+  }
+}

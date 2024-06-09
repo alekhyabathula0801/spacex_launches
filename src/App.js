@@ -1,23 +1,21 @@
-import logo from './logo.svg';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import './App.css';
+import AppBar from './components/AppBar/AppBar';
+import LaunchesList from './components/LaunchesList';
+import { fetchLaunches } from './dataLayer/features/launches/launchesAction';
 
 function App() {
+  const dispatch = useDispatch()
+  
+  useEffect(() => {
+    dispatch(fetchLaunches());
+  }, [dispatch]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <AppBar />
+      <LaunchesList />
     </div>
   );
 }

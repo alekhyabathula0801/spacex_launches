@@ -1,0 +1,23 @@
+.sxl-app-bar {
+  .sxl-ab-tool-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .sxl-tb-title {
+    text-align: left;
+    min-width: fit-content;
+  }
+  .search-bar-wrapper {
+    flex: 1;
+  }
+  .sxl-tb-menu {
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+  }
+  .sxl-ab-bottom-padding {
+    padding-bottom: 56px;
+  }
+}
