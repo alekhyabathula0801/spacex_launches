@@ -4,15 +4,19 @@ import "./App.css";
 import AppBar from "./components/AppBar/AppBar";
 import LaunchesList from "./components/LaunchesList";
 import { fetchLaunches } from "./dataLayer/features/launches/launchesAction";
-import { getLaunchesFilterData } from "./dataLayer/features/launches/launchesSelector";
+import {
+  getSelectedFilteredLaunchStatus,
+  getSelectedFilteredLaunchYear
+} from "./dataLayer/features/launches/launchesSelector";
 
 function App() {
   const dispatch = useDispatch();
-  const filterData = useSelector(getLaunchesFilterData, shallowEqual);
+  const launchStatus = useSelector(getSelectedFilteredLaunchStatus, shallowEqual);
+  const launchYear = useSelector(getSelectedFilteredLaunchYear, shallowEqual);
 
   useEffect(() => {
-    dispatch(fetchLaunches({ params: filterData }));
-  }, [dispatch, filterData]);
+    dispatch(fetchLaunches({ params: { launchYear, launchStatus } }));
+  }, [dispatch, launchYear, launchStatus]);
 
   return (
     <div className="App">

@@ -1,23 +1,30 @@
 import { Box, InputAdornment, TextField } from "@mui/material";
-import { noop } from "lodash-es";
-import PropTypes from "prop-types";
+import { isEmpty } from "lodash-es";
 import React from "react";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import cancel from "../../assets/cancel.svg";
 import search from "../../assets/search.svg";
+import { updateFilterData } from "../../dataLayer/features/launches/launchesAction";
+import {
+  getIsFetchingLaunches,
+  getLaunchesSearchText,
+} from "../../dataLayer/features/launches/launchesSelector";
 import "./searchBar.scss";
 
-const SearchBar = ({
-  inputProps = {},
-  value = "",
-  autoFocus = false,
-  isDisabled = false,
-  suffix = null,
-  onSuffixClick = noop,
-  onChange = noop,
-  InputProps = {},
-  placeholder = "Search on Rocket",
-  isLoading = false,
-  ...props
-}) => {
+const SearchBar = () => {
+  const dispatch = useDispatch();
+  const isDisabled = useSelector(getIsFetchingLaunches, shallowEqual);
+  const searchText = useSelector(getLaunchesSearchText, shallowEqual);
+
+  const onChange = (event) => {
+    const value = event.target.value;
+    dispatch(updateFilterData({ searchText: value }));
+  };
+
+  const onClear = () => {
+    dispatch(updateFilterData({ searchText: "" }));
+  };
+
   const InputPrefix = () => {
     return (
       <InputAdornment
@@ -32,7 +39,7 @@ const SearchBar = ({
     );
   };
   const InputSuffix = () => {
-    if (suffix) {
+    if (!isEmpty(searchText)) {
       return (
         <InputAdornment
           disableTypography={isDisabled}
@@ -40,12 +47,10 @@ const SearchBar = ({
           position="end"
         >
           <div
-            onClick={onSuffixClick}
-            className={`search-bar-suffix-wrapper ${
-              onSuffixClick && "sb-suffix-clickable"
-            }`}
+            onClick={onClear}
+            className={`search-bar-suffix-wrapper sb-suffix-clickable`}
           >
-            {suffix}
+            <img src={cancel} size={16} alt="search" />
           </div>
         </InputAdornment>
       );
@@ -63,36 +68,19 @@ const SearchBar = ({
     >
       <TextField
         fullWidth
-        placeholder={placeholder}
-        value={value}
-        onChange={onChange}
+        placeholder={"Search on Rocket"}
+        value={searchText}
         disabled={isDisabled}
-        autoFocus={autoFocus}
+        onChange={onChange}
         InputProps={{
           startAdornment: InputPrefix(),
           endAdornment: InputSuffix(),
           customvariant: "searchBar",
-          inputProps: inputProps,
-          ...InputProps,
         }}
         className={"sbw-text-field"}
-        {...props}
       />
     </Box>
   );
 };
 
 export default SearchBar;
-
-SearchBar.propTypes = {
-  inputProps: PropTypes.object,
-  value: PropTypes.string,
-  autoFocus: PropTypes.bool,
-  isDisabled: PropTypes.bool,
-  suffix: PropTypes.node,
-  onSuffixClick: PropTypes.func,
-  onChange: PropTypes.func,
-  InputProps: PropTypes.object,
-  placeholder: PropTypes.string,
-  isLoading: PropTypes.bool,
-};

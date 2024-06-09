@@ -1,12 +1,12 @@
 import React from "react";
 import { shallowEqual, useSelector } from "react-redux";
-import { getLaunchesData } from "../../dataLayer/features/launches/launchesSelector";
+import { getFilteredLaunchesList } from "../../dataLayer/features/launches/launchesSelector";
 import useIntersectionObserver from "../../hooks/useIntersectionObserver";
 import LaunchCard from "../LaunchCard";
 import "./launchesList.scss";
 
 const LaunchesList = () => {
-  const launches = useSelector(getLaunchesData, shallowEqual);
+  const launches = useSelector(getFilteredLaunchesList, shallowEqual);
   const { numberOfEntries, updateNumberOfEntries } =
     useIntersectionObserver(20);
 
