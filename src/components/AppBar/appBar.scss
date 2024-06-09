@@ -21,3 +21,12 @@
     padding-bottom: 56px;
   }
 }
+
+@media screen and (min-width: 1000px) {
+  .sxl-app-bar {
+    .sxl-tb-menu {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}
