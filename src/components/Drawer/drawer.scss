@@ -1,0 +1,29 @@
+.sxl-drawer {
+  .sxl-d-paper-wrapper {
+    width: 280px;
+    padding: 24px;
+  }
+  .sxl-d-header {
+    padding-bottom: 24px;
+    .sxl-d-h-icon {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
+  }
+
+  .sxl-d-launch-status {
+    margin-top: 24px;
+    .sxl-d-filter-options-wrapper {
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  .sxl-d-reset {
+    padding: 12px 24px;
+    margin-top: 36px;
+    cursor: pointer;
+    border-radius: 12px;
+  }
+}

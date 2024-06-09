@@ -2,12 +2,23 @@ import { Typography } from "@mui/material";
 import MuiAppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import React from "react";
+import React, { useState } from "react";
 import hamburger_menu from "../../assets/hamburger_menu.svg";
+import Drawer from "../Drawer";
 import SearchBar from "../SearchBar";
 import "./appBar.scss";
 
 const AppBar = () => {
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  const onMenuClick = () => {
+    setIsDrawerOpen(true);
+  };
+
+  const onDrawerClose = () => {
+    setIsDrawerOpen(false);
+  };
+
   return (
     <Box className="sxl-app-bar">
       <MuiAppBar position="fixed">
@@ -21,10 +32,16 @@ const AppBar = () => {
             SpaceX
           </Typography>
           <SearchBar />
-          <img className="sxl-tb-menu" src={hamburger_menu} alt="menu" />
+          <img
+            onClick={onMenuClick}
+            className="sxl-tb-menu"
+            src={hamburger_menu}
+            alt="menu"
+          />
         </Toolbar>
       </MuiAppBar>
-      <Box className='sxl-ab-bottom-padding' />
+      <Drawer isOpen={isDrawerOpen} onClose={onDrawerClose} />
+      <Box className="sxl-ab-bottom-padding" />
     </Box>
   );
 };
