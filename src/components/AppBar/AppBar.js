@@ -3,15 +3,22 @@ import MuiAppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import React, { useState } from "react";
+import { shallowEqual, useSelector } from "react-redux";
 import hamburger_menu from "../../assets/hamburger_menu.svg";
+import { getIsFetchingLaunches, getLaunchesErrorData } from "../../dataLayer/features/launches/launchesSelector";
 import Drawer from "../Drawer";
 import SearchBar from "../SearchBar";
 import "./appBar.scss";
 
 const AppBar = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const isFetchingData = useSelector(getIsFetchingLaunches, shallowEqual);
+  const {  isFetchFailed } = useSelector(getLaunchesErrorData, shallowEqual);
 
   const onMenuClick = () => {
+    if (isFetchingData || isFetchFailed) {
+      return;
+    }
     setIsDrawerOpen(true);
   };
 

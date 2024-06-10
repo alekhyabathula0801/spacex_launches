@@ -7,6 +7,7 @@ import search from "../../assets/search.svg";
 import { updateFilterData } from "../../dataLayer/features/launches/launchesAction";
 import {
   getIsFetchingLaunches,
+  getLaunchesErrorData,
   getLaunchesSearchText,
 } from "../../dataLayer/features/launches/launchesSelector";
 import "./searchBar.scss";
@@ -14,6 +15,7 @@ import "./searchBar.scss";
 const SearchBar = () => {
   const dispatch = useDispatch();
   const isDisabled = useSelector(getIsFetchingLaunches, shallowEqual);
+  const { isFetchFailed } = useSelector(getLaunchesErrorData, shallowEqual);
   const searchText = useSelector(getLaunchesSearchText, shallowEqual);
 
   const onChange = (event) => {
@@ -42,8 +44,8 @@ const SearchBar = () => {
     if (!isEmpty(searchText)) {
       return (
         <InputAdornment
-          disableTypography={isDisabled}
-          disablePointerEvents={isDisabled}
+          disableTypography={isDisabled || isFetchFailed}
+          disablePointerEvents={isDisabled || isFetchFailed}
           position="end"
         >
           <div
