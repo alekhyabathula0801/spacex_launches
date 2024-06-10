@@ -1,10 +1,14 @@
 import { Stack, Typography } from "@mui/material";
 import { noop } from "lodash-es";
-import { func, string } from "prop-types";
+import { bool, func, string } from "prop-types";
 import React from "react";
 import "./pageError.scss";
 
-const PageError = ({ message = "Please try again...", onRetry = noop }) => {
+const PageError = ({
+  message = "Please try again...",
+  onRetry = noop,
+  hideButton = false,
+}) => {
   return (
     <Stack
       justifyContent="center"
@@ -16,9 +20,11 @@ const PageError = ({ message = "Please try again...", onRetry = noop }) => {
       <Typography variant="body2" color={"foundationColors.content.secondary"}>
         {message}
       </Typography>
-      <Typography className="sxl-pe-retry" sx={sx} onClick={onRetry}>
-        Retry
-      </Typography>
+      {!hideButton && (
+        <Typography className="sxl-pe-retry" sx={sx} onClick={onRetry}>
+          Retry
+        </Typography>
+      )}
     </Stack>
   );
 };
@@ -34,4 +40,5 @@ const sx = {
 PageError.propTypes = {
   message: string,
   onRetry: func,
+  hideButton: bool,
 };

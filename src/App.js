@@ -1,12 +1,15 @@
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import AppBar from "./components/AppBar";
-import LaunchesList from "./components/LaunchesList";
+import Dashboard from "./components/Dashboard";
+import PageNotFound from "./components/PageNotFound";
 
 const App = () => {
   return (
     <div className="App">
-      <AppBar />
-      <LaunchesList />
+      <Routes>
+        <Route path={"/"} element={<Dashboard />} />
+        <Route path="*" element={<PageNotFound />} />
+      </Routes>
     </div>
   );
 };

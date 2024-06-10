@@ -5,12 +5,25 @@ import "@fontsource/inter/latin-700.css";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { Provider as ReduxProvider } from "react-redux";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { PersistGate as ReduxPersistGate } from "redux-persist/integration/react";
 import App from "./App";
+import ErrorBoundary from "./components/ErrorBoundary";
 import store, { persistor } from "./dataLayer/store";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import ThemeWrapper from "./theme/ThemeWrapper";
+
+const router = createBrowserRouter([
+  {
+    path: "*",
+    element: (
+      <ErrorBoundary>
+        <App />
+      </ErrorBoundary>
+    ),
+  },
+]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -18,7 +31,7 @@ root.render(
     <ReduxProvider store={store}>
       <ReduxPersistGate loading={null} persistor={persistor}>
         <ThemeWrapper>
-          <App />
+          <RouterProvider router={router} />
         </ThemeWrapper>
       </ReduxPersistGate>
     </ReduxProvider>
