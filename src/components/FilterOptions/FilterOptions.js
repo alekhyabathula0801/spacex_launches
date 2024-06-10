@@ -1,7 +1,7 @@
 import { Stack, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import { isEmpty, noop } from "lodash-es";
-import { array, func, string } from "prop-types";
+import { array, bool, func, oneOfType, string } from "prop-types";
 import React from "react";
 import "./filterOptions.scss";
 
@@ -66,7 +66,7 @@ FilterOptions.propTypes = {
   title: string,
   options: array,
   valueKeyName: string,
-  selectedValue: string,
+  selectedValue: oneOfType([string, bool]),
   onOptionSelect: func,
   className: string,
 };
