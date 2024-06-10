@@ -4,6 +4,7 @@ import CircularProgress, {
 } from "@mui/material/CircularProgress";
 import PropTypes from "prop-types";
 import React from "react";
+import "./circularLoader.scss";
 
 export const LOADER_VARIANTS = {
   INDETERMINATE: "indeterminate",
@@ -20,24 +21,22 @@ const CircularLoader = ({
   circularTrackColor = "foundationColors.supporting.grey",
   strokeCap = STROKE_CAP.ROUND,
   variant = LOADER_VARIANTS.INDETERMINATE,
-  showCircularTrack = false,
-  size = 12,
+  size = 24,
   thickness = 5,
   loaderValue = 100,
-  wrapperSx = {},
   ...restProps
 }) => {
   return (
     <Stack
       justifyContent="center"
       alignItems="center"
-      sx={{ ...styles.wrapper, ...wrapperSx }}
+      className="sxl-circular-loader"
     >
       <CircularProgress
         sx={{
-          color: showCircularTrack ? circularTrackColor : "transparent",
+          color: "transparent",
           [`& .${circularProgressClasses.circle}`]: {
-            strokeLinecap: strokeCap,
+            strokeLinecap: STROKE_CAP.ROUND,
           },
         }}
         size={size}
@@ -65,12 +64,6 @@ const CircularLoader = ({
   );
 };
 
-const styles = {
-  wrapper: {
-    position: "relative",
-  },
-};
-
 export default CircularLoader;
 
 CircularLoader.propTypes = {
@@ -80,7 +73,5 @@ CircularLoader.propTypes = {
   size: PropTypes.number,
   thickness: PropTypes.number,
   loaderValue: PropTypes.number,
-  showCircularTrack: PropTypes.bool,
   circularTrackColor: PropTypes.string,
-  wrapperSx: PropTypes.object,
 };

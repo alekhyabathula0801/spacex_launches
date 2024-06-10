@@ -21,7 +21,7 @@ const AppBar = () => {
 
   return (
     <Box className="sxl-app-bar">
-      <MuiAppBar position="fixed">
+      <MuiAppBar classes={{ paper: "sxl-ab-wrapper" }} position="fixed">
         <Toolbar className="sxl-ab-tool-bar">
           <Typography
             variant="heading3"

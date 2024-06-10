@@ -1,4 +1,7 @@
 .sxl-app-bar {
+  .sxl-ab-wrapper {
+    z-index: 20;
+  }
   .sxl-ab-tool-bar {
     display: flex;
     align-items: center;

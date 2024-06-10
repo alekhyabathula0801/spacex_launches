@@ -1,0 +1,11 @@
+.sxl-page-error {
+  position: relative;
+  padding: 64px;
+
+  .sxl-pe-retry {
+    padding: 16px 24px;
+    cursor: pointer;
+    border-radius: 12px;
+    min-width: 150px;
+  }
+}
