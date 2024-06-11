@@ -3,7 +3,7 @@
 A React app that shows a list of the SpaceX launches and allows the user to filter data by launch status, launch year & mission name.
 
 ## Installation
-To install, clone this repository & run the npm install, using cmd or teminal this will install all the dependencies related to Project
+To install, clone this repository & run npm install, using cmd or teminal this will install all the dependencies related to Project
 
 ## Available Scripts
 
@@ -29,5 +29,3 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
