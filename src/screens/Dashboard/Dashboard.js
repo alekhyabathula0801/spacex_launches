@@ -1,6 +1,6 @@
 import React from "react";
-import AppBar from "../AppBar";
-import LaunchesList from "../LaunchesList";
+import AppBar from "../../components/AppBar";
+import LaunchesList from "../../components/LaunchesList";
 
 const Dashboard = () => {
   return (
