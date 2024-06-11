@@ -1,4 +1,4 @@
-import { Stack, Typography } from "@mui/material";
+import { Button, Stack, Typography } from "@mui/material";
 import { noop } from "lodash-es";
 import { bool, func, string } from "prop-types";
 import React from "react";
@@ -21,21 +21,20 @@ const PageError = ({
         {message}
       </Typography>
       {!hideButton && (
-        <Typography className="sxl-pe-retry" sx={sx} onClick={onRetry}>
+        <Button
+          onClick={onRetry}
+          color="secondary"
+          variant="outlined"
+          className="sxl-pe-retry"
+        >
           Retry
-        </Typography>
+        </Button>
       )}
     </Stack>
   );
 };
 
 export default PageError;
-
-const sx = {
-  color: "foundationColors.action.brand",
-  border: "1px solid",
-  borderColor: "foundationColors.action.brand",
-};
 
 PageError.propTypes = {
   message: string,

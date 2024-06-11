@@ -1,4 +1,4 @@
-import { Drawer as MuiDrawer, Stack, Typography } from "@mui/material";
+import { Button, Drawer as MuiDrawer, Stack, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import { noop } from "lodash-es";
 import React from "react";
@@ -72,22 +72,17 @@ const Drawer = ({ isOpen = false, onClose = noop }) => {
           onOptionSelect={onOptionClick}
           className="sxl-d-launch-status"
         />
-        <Typography
-          color={"foundationColors.action.brand"}
-          className="sxl-d-reset"
+        <Button
           onClick={onResetFilter}
-          sx={sx}
+          fullWidth
+          color="secondary"
+          variant="outlined"
         >
           Reset Filter
-        </Typography>
+        </Button>
       </MuiDrawer>
     </Box>
   );
 };
 
 export default Drawer;
-
-const sx = {
-  border: "1px solid",
-  borderColor: "foundationColors.sction.brand",
-};

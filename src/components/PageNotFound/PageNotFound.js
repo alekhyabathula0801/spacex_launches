@@ -1,4 +1,4 @@
-import { Stack, Typography } from "@mui/material";
+import { Button, Stack, Typography } from "@mui/material";
 import { bool, func, string } from "prop-types";
 import React from "react";
 import { useNavigate } from "react-router-dom";
@@ -17,20 +17,19 @@ const PageNotFound = () => {
       gap="16px"
     >
       <Typography variant="heading3">Oops 404!</Typography>
-      <Typography className="sxl-pe-retry" sx={sx} onClick={onClick}>
+      <Button
+        className="sxl-pe-retry"
+        onClick={onClick}
+        color="secondary"
+        variant="outlined"
+      >
         HOME
-      </Typography>
+      </Button>
     </Stack>
   );
 };
 
 export default PageNotFound;
-
-const sx = {
-  color: "foundationColors.action.brand",
-  border: "1px solid",
-  borderColor: "foundationColors.action.brand",
-};
 
 PageNotFound.propTypes = {
   message: string,
