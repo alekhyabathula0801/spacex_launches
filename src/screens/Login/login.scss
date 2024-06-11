@@ -1,0 +1,24 @@
+.sxl-login {
+  height: 100vh;
+  .sxl-l-wrapper {
+    box-shadow: 0px 8px 25px 0px #0000001a;
+    border-radius: 16px;
+    padding: 12px;
+    margin: auto auto;
+    height: 70vh;
+    width: 80%;
+  }
+  .sxl-lw-button {
+    padding: 12px 0px;
+    border-radius: 10px;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .sxl-login {
+    .sxl-l-wrapper {
+      width: 60%;
+      padding: 24px;
+    }
+  }
+}
