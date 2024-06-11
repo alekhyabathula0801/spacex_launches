@@ -4,14 +4,14 @@ import React, { useState } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setUserData } from "../../dataLayer/features/login/loginAction";
+import { updateUsersList } from "../../dataLayer/features/users/usersAction";
 import { getUsersList } from "../../dataLayer/features/users/usersSelector";
-import "./login.scss";
+import "./signUp.scss";
 
-const Login = () => {
+const SignUp = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const usersList = useSelector(getUsersList, shallowEqual);
-
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     userId: "",
     userIdError: "",
@@ -30,51 +30,60 @@ const Login = () => {
     });
   };
 
-  const onSignUp = () => {
-    navigate("/sign-up");
-  };
-
   const validateUser = () => {
     let isValidLogin = true;
     let form = cloneDeep(formData);
+
+    if (isEmpty(formData.password)) {
+      isValidLogin = false;
+      form.passwordError = "Please enter password";
+    } else if (formData.userId.length <= 7) {
+      isValidLogin = false;
+      form.passwordError = "Password must contain 7 characters";
+    }
     const userData = usersList.find((data) => data.userId === formData.userId);
     if (isEmpty(formData.userId)) {
       isValidLogin = false;
       form.userIdError = "Please enter user id";
-    } else if (isEmpty(userData)) {
+    } else if (!isEmpty(userData)) {
       isValidLogin = false;
-      form.userIdError = "User Id doesn't exists, please sign up";
-    }
-    if (isEmpty(formData.password)) {
+      form.userIdError = "User Id already exists";
+    } else if (formData.userId.length <= 5) {
       isValidLogin = false;
-      form.passwordError = "Please enter password";
-    } else if (!isEmpty(userData) && userData.password !== formData.password) {
-      isValidLogin = false;
-      form.passwordError = "Incorrect password, please try again";
+      form.userIdError = "User Id must contain 5 characters";
     }
 
     if (!isValidLogin) {
       setFormData(form);
     }
 
-    return isValidLogin;
-  };
+    return isValidLogin
+  }
 
-  const onLogin = () => {
+  const onSignUp = () => {
     const isValidLogin = validateUser();
     if (isValidLogin) {
+      dispatch(updateUsersList(formData));
       dispatch(setUserData(formData));
       navigate("/");
     }
   };
 
+  const onLogin = () => {
+    navigate("/login");
+  };
+
   return (
-    <Stack className="sxl-login" alignItems={"center"} justifyContent="center">
+    <Stack
+      className="sxl-sign-up"
+      alignItems={"center"}
+      justifyContent="center"
+    >
       <Stack
         alignItems={"center"}
         justifyContent="center"
         gap="16px"
-        className="sxl-l-wrapper"
+        className="sxl-su-wrapper"
       >
         <TextField
           fullWidth
@@ -94,26 +103,26 @@ const Login = () => {
           error={!isEmpty(formData.passwordError)}
         />
         <Button
-          className="sxl-lw-button sxl-lw-primary-button"
+          className="sxl-suw-button sxl-suw-primary-button"
           fullWidth
           color="secondary"
           variant="contained"
-          onClick={onLogin}
-        >
-          LOGIN
-        </Button>
-        <Button
-          className="sxl-lw-button"
-          fullWidth
-          color="secondary"
-          variant="outlined"
           onClick={onSignUp}
         >
           SIGN UP
+        </Button>
+        <Button
+          className="sxl-suw-button"
+          fullWidth
+          color="secondary"
+          variant="outlined"
+          onClick={onLogin}
+        >
+          LOGIN
         </Button>
       </Stack>
     </Stack>
   );
 };
 
-export default Login;
+export default SignUp;
