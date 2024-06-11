@@ -37,7 +37,7 @@ const SignUp = () => {
     if (isEmpty(formData.password)) {
       isValidLogin = false;
       form.passwordError = "Please enter password";
-    } else if (formData.password.length <= 7) {
+    } else if (formData.password.length < 7) {
       isValidLogin = false;
       form.passwordError = "Password must contain 7 characters";
     }
@@ -48,7 +48,7 @@ const SignUp = () => {
     } else if (!isEmpty(userData)) {
       isValidLogin = false;
       form.userIdError = "User Id already exists";
-    } else if (formData.userId.length <= 5) {
+    } else if (formData.userId.length < 5) {
       isValidLogin = false;
       form.userIdError = "User Id must contain 5 characters";
     }
