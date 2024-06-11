@@ -37,7 +37,7 @@ const SignUp = () => {
     if (isEmpty(formData.password)) {
       isValidLogin = false;
       form.passwordError = "Please enter password";
-    } else if (formData.userId.length <= 7) {
+    } else if (formData.password.length <= 7) {
       isValidLogin = false;
       form.passwordError = "Password must contain 7 characters";
     }
