@@ -4,7 +4,7 @@
   .sxl-ll-wrapper {
     display: grid;
     gap: 16px;
-    grid-template-columns: auto;
+    grid-template-columns: 1fr;
   }
 }
 
@@ -12,7 +12,7 @@
   .sxl-launches-list {
     padding: 32px;
     .sxl-ll-wrapper {
-      grid-template-columns: auto auto;
+      grid-template-columns: 1fr 1fr;
     }
   }
 }
@@ -21,7 +21,7 @@
   .sxl-launches-list {
     padding: 32px;
     .sxl-ll-wrapper {
-      grid-template-columns: auto auto auto;
+      grid-template-columns: 1fr 1fr 1fr;
     }
   }
 }
@@ -30,7 +30,7 @@
   .sxl-launches-list {
     padding: 32px;
     .sxl-ll-wrapper {
-      grid-template-columns: auto auto auto auto;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
     }
   }
 }

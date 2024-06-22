@@ -37,7 +37,7 @@ const LaunchCard = ({
             >
               {data.title}
             </Typography>
-            <Typography component="div" variant="body1">
+            <Typography textAlign={"left"} component="div" variant="body1">
               {data.value || "-"}
             </Typography>
           </Stack>
