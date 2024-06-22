@@ -1,6 +1,6 @@
 import { Stack, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
-import React from "react";
+import React, { memo } from "react";
 import { getLaunchCardViewData } from "./helper";
 import "./launchCard.scss";
 
@@ -47,4 +47,4 @@ const LaunchCard = ({
   );
 };
 
-export default LaunchCard;
+export default memo(LaunchCard);
